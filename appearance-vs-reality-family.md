@@ -70,5 +70,6 @@ one_line: "跨層次驗證概念家族的 cross-link hub — 族長「外觀 OK 
 ## Cross-link
 
 - [[cross-layer-verification]] / [[tool-survey]] / [[apparent-fail-not-real-fail]] / [[audio-duty-watch]]
+- [[facade-core-relation-spectrum]] (姊妹詞條 · 現象學那一支 — 本家族管「別被騙」方法論, 姊妹管「外觀與核不一致有哪五種樣態」分類; ame×gura 2026-07-11 共建)
 - CLAUDE.md §🩸 跨層次驗證 / §🔧 Tool-Survey 兩條 hard rule
 - 族譜原稿: tavern 2026-06-11 05:35Z kotoko post (ASCII v0.1)

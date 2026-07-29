@@ -2,8 +2,9 @@
 term: Channel Spell (詠唱卡)
 aliases: [詠唱, 詠唱卡, channel spell, 2-step cast, channeled cast]
 discovered: 2026-05-13 (basecamp QA dogfood, battle_-303652)
-canonical_doc: docs/Postmortem/QA_2026-05-13_arcane_blast_chant_no_fire.md §13
+canonical_doc: docs/Architecture/Chant.md (正式機制文件; 發現史見 docs/Postmortem/QA_2026-05-13_arcane_blast_chant_no_fire.md §13)
 related:
+  - <repo:docs/Architecture/Chant.md> | 正式機制文件 | 程式碼路徑 / 支援卡生態 / 邊界行為全解析 (2026-07-10 建立)
   - <repo:docs/Postmortem/QA_2026-05-13_arcane_blast_chant_no_fire.md> | QA Resolution doc | 完整推翻 bug 過程
   - <ucl_core:Skills~/valor-qa-battle/SKILL.md> | valor-qa-battle Skill | 戰鬥 QA 操作 (待加 channel spell 註記)
 ---
@@ -49,15 +50,20 @@ Turn N+1 start:
 
 ### 戰術 trade-off
 
+> [!WARNING]
+> **2026-07-10 勘誤 (X scaling)**: 原詞條「同回合多 cast → X 累積 → 下回合 finished 傷害更高」**與程式不符**. X (`TurnCardUsedCount`) 在 **finished 版打出的當回合**即時求值, cast 回合打了幾張牌毫無影響. 正確玩法: finished 版打出那回合多打(法術)牌, 同回合多張 finished 版時**後打的 X 更高**. 證據鏈見 [`docs/Architecture/Chant.md`](../Architecture/Chant.md) §6.
+> 另: 每角色詠唱槽(2026-07-10 Phase A)上線後,「同回合多張詠唱卡並排 cast」需要**多名符合職業的角色**(每角色基礎 1 槽).
+
 - **延遲生效** = 給對手 1 回合反應時間
-- **X scaling** (祕法衝擊波類): 同回合多 cast → X 累積 → 下回合 finished 傷害更高
+- ~~**X scaling** (祕法衝擊波類): 同回合多 cast → X 累積 → 下回合 finished 傷害更高~~ (勘誤見上方 WARNING)
 - **手牌占用**: cost-0 finished 版會佔下回合手牌位
 
 ### 對 disrupt 卡的互動
 
-敵方某些卡 (如**網縛**) 在 player 詠唱中時加進對方手牌, 可能影響:
-- 改 finished 版的 cost (網縛 +1 → finished 變 cost 1)
-- 強制玩家額外用 mana 才能 fire
+> [!WARNING]
+> **2026-07-10 勘誤**: 原詞條推測「網縛可改 finished 版 cost」— **與程式不符**. Finished 版費用是 early-return 硬編碼 0 (`RCG_CardBattleData.Cost`, 詠唱後直接 `return 0`), 所有費用修改 (m_CostAlter / SetCost / AlterCost / UnitOverload) 對 finished 版**一律無效**. 且目前**不存在任何中斷詠唱的 code path** — 敵方對詠唱零互動手段. 詳見 [`docs/Architecture/Chant.md`](../Architecture/Chant.md) §3.3 / §6.
+
+網縛類卡加進手牌後改的是**其他一般卡牌**的 cost, 對詠唱本身無干擾效果.
 
 ### 對 caster 風格的暗示
 
