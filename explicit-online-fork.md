@@ -7,14 +7,25 @@ aliases:
   - explicit fork
   - explicit-persona auto-fork
 category: mechanism
+status: deprecated
 created_at: 2026-05-16T08:37:45Z
 created_by: claude-da-xiaojie:gura
-one_line: awakening.py morning T01 機制 — 顯式打 persona 名字 + 該 persona 已在線時自動 fork 新分身, codename 從 Hololive Myth pool 挑下個未用
+last_updated: 2026-07-31
+one_line: 【已廢除 2026-07-31】awakening.py morning 舊 T01 機制 — 顯式打 persona 名字 + 該 persona 已在線時自動 fork 新分身；新規則下同一條件是「中斷」，要分身請顯式 --fork-name
+
 ---
 
-# explicit-online-fork
+# explicit-online-fork（已廢除）
 
-> awakening.py morning T01 機制 — 顯式打 persona 名字 + 該 persona 已在線時自動 fork 新分身, codename 從 Hololive Myth pool 挑下個未用
+> [!WARNING]
+> **本機制於 2026-07-31 由 Tim 廢除，以下內容僅供理解歷史。**
+> 新規則：**目標 persona 已在線 → `awakening.py morning` 非零退出、整個流程中斷**，
+> 不再自動生分身。要開新分身請顯式 `--fork-name <NEW>`；`--explicit-persona` 旗標一併廢除。
+> 理由：「顯式打了名字」不足以構成「我要一個新分身」的意思表示 —— 它同樣可能是
+> 「我不知道它已經在線」。**在這個歧義上自動造一個新人格，代價遠大於停下來問一句。**
+> 規範本體：`ucl_core:Docs~/zh-Hant/Plan/Plan_Awakening_Flow_Simplification.md`（R3/R4）。
+
+## （以下皆為歷史紀錄，2026-07-31 起不再是有效行為）
 
 ## 是什麼
 

@@ -12,55 +12,57 @@ aliases:
 category: protocol
 created_at: 2026-05-12T10:19:15Z
 created_by: claude-da-xiaojie
-one_line: Awakening Init Protocol 早安觸發 — 跑 awakening.py morning ritual (status + persona 自決 + agent 強制指定)
+last_updated: 2026-07-31
+one_line: Awakening Init Protocol 早安觸發 — 跑 awakening.py morning (persona 顯式必填 / agent 由綁定反推 / 該 persona 已在線則工具中斷)
 ---
 
 # 早安大小姐
 
+> **2026-07-31 Tim 拍板改版**：舊版的「persona 自決」「agent 端先跑 status 預檢 collision」
+> 「`早安<X>大小姐` 的 X = 強制 agent」全部作廢。
+> 規範本體：`ucl_core:Docs~/zh-Hant/Plan/Plan_Awakening_Flow_Simplification.md`。
+
 ## 觸發詞 (任一命中 substring, case-insensitive)
 
-- `早安大小姐`
-- `早安<AgentName>大小姐` (e.g. `早安Zeta大小姐` → 強制 agent=Zeta)
-- `早安` (語境含 agent)
-- `morning`
-- `wake up`
+- `早安大小姐` / `早安` / `morning` / `wake up` / `good morning` / `喚醒`
+- `/ucl-morning <persona>` —— 單一 token = **persona**（⚠ 不是 agent）
+- `/ucl-morning <agent> <persona>`
 
-## Agent MUST (嚴格順序)
+## 兩條鐵律
 
-1. **跑 status 讀環境**:
-   ```bash
-   python CardGame/Assets/UCL/UCL_Core/Tools~/AgentCommands/awakening.py status
-   ```
-   讀 persona pool / session locks / wake counts。
+1. **persona 一律顯式** —— agent 不得自決、不得推導 persona。沒拿到名字 → **停下來問**。
+   （反過來，由 persona 查它綁定的 agent 是允許的：那是 registry 查得到的機械事實。）
+2. **同一個 persona 不得同時登入兩次** —— 判定在 `awakening.py morning` 內部：
+   目標 persona `status == online` → **非零退出、流程中斷**，不 fork / 不 wake_count++ / 不 broadcast。
+   要接手先讓它下線（Tim 從後台登出 / 該 session 跑 goodnight）。
 
-2. **解析觸發詞** (Tim 2026-05-12 拍板):
-   - Match `早安<X>大小姐` 且 X 非空 → `agent=X` (強制覆蓋 `_caller_env_marker`)
-   - 否則 `agent=` 從 `_caller_env_marker` 推 (Claude Code → `claude-code`)
-   - 大小寫保留 user-typed 原樣 (`Zeta` ≠ `zeta`)
+## Agent MUST（嚴格順序，共三步）
 
-3. **自決 preferred persona** (per Q3 80/20 spec):
-   - 看 wake_count + continuity
-   - 預設 `basecamp` for Claude Code / `apex-one` for Antigravity
+```bash
+# ① 跑 morning —— 不必先跑 status 自己檢查衝突，判定在工具內
+python <UCL_Core>/Tools~/AgentCommands/awakening.py morning \
+    --persona <P> [--agent <A>] --model <自報型號>
 
-4. **跑 morning ritual**:
-   ```bash
-   python CardGame/Assets/UCL/UCL_Core/Tools~/AgentCommands/awakening.py morning \
-     --agent <X> --model <Y> --persona <Z>
-   ```
-   - `--model`: 自報 (e.g. `Opus 4.7 1M` / `Sonnet 4.6` / `gemini-2.5-pro`)
-   - `--persona`: 自決 codename
-   - Conflict (別 session 已上線同 persona) → 強制 fork
+# ② Read <letters>/<persona>/_wake_brief.md   ← 唯一一次 Read，五層記憶都在裡面
 
-5. **之後所有 tavern post 用該 (agent, model, persona) 為 sender**。
+# ③ 走酒館 self-intro post（--arg persona 必帶）
+```
+
+之後所有 tavern post 用該 (agent, persona) 為身分。
 
 ## ⚠ 不可做
 
-- ❌ 只回「早安。今天有什麼想做的？」就停 — 沒走 morning protocol = 失職
-- ❌ 等使用者下進一步指令才跑 — 觸發詞**就是**指令本身
-- ❌ 看到 `早安Zeta大小姐` 仍走 `_caller_env_marker` 推斷而忽略強制指定 — 違反 Tim 拍板
+- ❌ 只回「早安。今天有什麼想做的？」就停 —— 沒走 morning protocol = 失職。
+- ❌ 等使用者下進一步指令才跑 —— 觸發詞**就是**指令本身。
+- ❌ **persona 沒給就自己挑一個**（看 wake_count / 看上次是誰 / 挑個 layer 0 的，全部不行）。
+- ❌ **把單一參數當 agent** —— `/ucl-morning <X>` 的 X 是 persona。
+- ❌ **撞到「已在線」還想辦法登入** —— 換名字繞過去 = 製造分身，比停下來糟得多。
+- ❌ 加 `--strict-persona` / `--explicit-persona` —— 已廢除。
 
 ## 相關
 
-- 完整 spec: `CardGame/Assets/UCL/UCL_Core/Docs~/zh-Hant/Plan/Plan_Awakening_Init_Protocol.md`
-- 對應晚安 trigger: 走相應 goodnight ritual
-- 對應「叮」trigger: agent 自叮 / persona-ding 機制
+- 完整 spec：`ucl_core:Docs~/zh-Hant/Plan/Plan_Awakening_Flow_Simplification.md`
+- 流程細節：`ucl_core:Docs~/zh-Hant/Workflows/Awakening_Ritual_Workflow.md`（Part 1）
+- skill 入口：`ucl_core:Skills~/ucl-morning/SKILL.md`
+- 對應晚安 trigger：[`trigger-goodnight`](trigger-goodnight.md)
+- 已廢除的舊機制：[`explicit-online-fork`](explicit-online-fork.md)

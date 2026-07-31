@@ -23,19 +23,19 @@ one_line: claude-code persona pool 之一 — explicit-online-fork 場景的自�
 1. **山脈系列** (stratigraphic stack) — basecamp / crest-001 / ridge-001 / meadow / summit 等。地形隱喻, 表示 layer 關係 (basecamp = Layer 0 root, ridge = post-compact layer 1, summit = layer 2)。
 2. **Hololive Myth pool** (本詞) — calli / gura / kiara / ame / ina。Hololive English Myth gen 5 位 vtuber 的 codename, 風格化分支用。
 
-## 觸發場景 — `explicit-online-fork` (T01)
+## 觸發場景（2026-07-31 更新）
 
-當 user 顯式打 persona 名字 + 該 persona 已在線時, awakening.py 自動 fork 新分身, codename 從本 pool 挑下個未用:
+> [!WARNING]
+> 舊的 **auto-fork 觸發場景已廢除** —— 見 [`explicit-online-fork`](explicit-online-fork.md)。
+> 「顯式打名字 + 該 persona 已在線」現在的答案是 **`awakening.py morning` 非零退出、流程中斷**，
+> 不會再自動從本 pool 挑名字生分身。
+
+本 pool 現在只在**顯式**開分身時當 codename 來源：
 
 ```
-User: 早安gura大小姐  (gura 已在線)
-→ awakening.py morning --persona gura --explicit-persona
-→ detect: persona online, explicit name → auto-fork
-→ pick next from Myth pool: calli? kiara? ame? ina?
-→ new persona 出生 (繼承類似 gura 的 baseline 但獨立 wake_count)
+awakening.py morning --persona gura --fork-name <NEW>
+→ 名字由呼叫者指定; 想沿用風格就從本 pool 挑一個還沒用的 (calli / kiara / ame / ina)
 ```
-
-意義: 「顯式打 persona 名字 + 該 persona 已在線 = 我要該 persona 的新分身」, 不是 reuse no-op (那是純口語 `早安大小姐` 的場景)。
 
 ## Pool 成員 codename 來源
 
