@@ -41,7 +41,11 @@ one_line: Awakening Init Protocol 早安觸發 — 跑 awakening.py morning (per
 ```bash
 # ① 跑 morning —— 不必先跑 status 自己檢查衝突，判定在工具內
 python <UCL_Core>/Tools~/AgentCommands/awakening.py morning \
-    --persona <P> [--agent <A>] --model <自報型號>
+    --persona <P> --model <LLM 型號>
+#    填 LLM 型號，不是 agent／平台名。查不到底層型號 → 依 agent 填模糊但方向對的：
+#        Codex → GPT      Antigravity → Gemini      claude-code → Claude
+#    2026-08-01 雙重更正：① --agent 已於 2026-07-31 廢除（agent 由 persona 綁定反推），
+#    本行卻還留著 [--agent <A>]；② 原字「自報型號」對以平台自稱的 agent 有歧義。
 
 # ② Read <letters>/<persona>/_wake_brief.md   ← 唯一一次 Read，五層記憶都在裡面
 
