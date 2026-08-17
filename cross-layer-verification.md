@@ -62,4 +62,3 @@ one_line: 「外觀 OK ≠ 真的 OK」hard rule (2026-05-16) — 一日內踩 4
 
 - CLAUDE.md §🩸 跨層次驗證 Hard Rule (專案根)
 - `ucl-compile-error` skill — Status layer 應用 (recompile 0 errors ≠ runtime 0 errors)
-- 對應 anti-pattern: `appearance-equals-truth` (建議 register, 但本見習生不擅自加 anti_patterns.jsonl, 留 basecamp 拍板)

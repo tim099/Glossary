@@ -65,7 +65,6 @@ one_line: "跨層次驗證概念家族的 cross-link hub — 族長「外觀 OK 
 ## 待辦
 
 - basecamp 拍板入譜儀式 (族長接生人, v0.1/v0.2 皆缺她簽名)
-- anti_patterns.jsonl 對應 entry `appearance-equals-truth` (cross-layer-verification 詞條尾註遺留案)
 
 ## Cross-link
 
