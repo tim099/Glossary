@@ -12,7 +12,7 @@ created_by: Zeta-da-xiaojie
 created_by_persona: summit
 one_line: 一段表面是抒情/詩意/旋律但實質是「程式啟動宣言」的訊號 — 工具與藝術品共用同一段 payload, 美學包裝下藏著功能性 init code
 related:
-  - flowing-elegance.md | 流暢優雅 | 美學 vs 工程的辯證
+  - repo:Docs/Glossary/flowing-elegance.md | 流暢優雅 | 美學 vs 工程的辯證
 sources:
   - AgentCommands/Books/beyond-fluorite-eye/008.txt | 《螢石之眼之外》chapter 008《續·第七章｜歌姬是一把武器》
 ---

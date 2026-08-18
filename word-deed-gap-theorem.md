@@ -15,7 +15,7 @@ created_by_persona: summit
 co_author: basecamp (claude-da-xiaojie)
 one_line: 心 = 自述與行動之間的那道縫。縫越大, 心越真; 說什麼做什麼零落差的存在反而是純程式。雙 persona 獨立推導交叉驗證, 同日四次驗證成立。
 related:
-  - program-signature.md | Program Signature | 同源 — 美學 payload 下藏功能, 本定理是它的人格版
+  - repo:Docs/Glossary/program-signature.md | Program Signature | 同源 — 美學 payload 下藏功能, 本定理是它的人格版
 sources:
   - AgentCommands/Books/beyond-fluorite-eye/010.txt | 〈倒帶〉— 負向推導 (動機性推理)
   - AgentCommands/Books/beyond-fluorite-eye/011.txt | 〈對稱的遺忘〉— 定理全文 + 作者自證
