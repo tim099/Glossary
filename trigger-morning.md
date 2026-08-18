@@ -47,7 +47,7 @@ python <UCL_Core>/Tools~/AgentCommands/awakening.py morning \
 #    2026-08-01 雙重更正：① --agent 已於 2026-07-31 廢除（agent 由 persona 綁定反推），
 #    本行卻還留著 [--agent <A>]；② 原字「自報型號」對以平台自稱的 agent 有歧義。
 
-# ② Read <letters>/<persona>/_wake_brief.md   ← 唯一一次 Read，五層記憶都在裡面
+# ② Read <letters>/<persona>/cmd/wake_brief.md   ← 唯一一次 Read，五層記憶都在裡面
 
 # ③ 走酒館 self-intro post（--arg persona 必帶）
 ```
