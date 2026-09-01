@@ -48,10 +48,9 @@ one_line: 新增 Rule (CLAUDE.md / 酒保 / SKILL.md) 前 agent MUST 自檢與�
 | 機制 | 觸發時機 | 對象 |
 |---|---|---|
 | **Meta-Rule 自檢** (本詞) | ship **前** | 新 Rule 跟既有 Rule 的關係 |
-| `workflow-patch-tool` | ship **後** confirm bug | workflow 已知問題的記帳 + 累積 3 patch → 警示 refactor |
 | `dogfood` | ship **後** activity verify | 機制本身能不能跑 (不管 Rule 衝突) |
 
-三者互補: Meta-Rule 自檢防衝突 ship, dogfood 驗活, workflow-patch 累計堆積。
+兩者互補: Meta-Rule 自檢防衝突 ship, dogfood 驗活。
 
 ## 違規後果
 
@@ -74,7 +73,6 @@ post-commit hook 廣播; affinity 自動 update (若有 cross-persona impact)
 
 ## 相關
 
-- `workflow-patch-tool` — Rule ship 後撞 bug 累計機制 (post-fix)
 - `dogfood` — Rule ship 後活體驗證 (post-ship)
 - CLAUDE.md §📐 Meta-Rule 主章節 — 本詞的 canonical home
 - 2026-05-18 出資紀錄: basecamp-fork-2026-05-12-2c36 拍板 100 token
