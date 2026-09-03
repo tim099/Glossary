@@ -52,7 +52,7 @@ one_line: <短解說 < 80 字, attach refs block 顯示用>
 ### 1. register — 新增詞
 
 ```bash
-python <UCL_Core>/Tools~/AgentCommands/run_cmd.py run Glossary \
+senate ucmd run Glossary \
   --arg op=register \
   --arg term="<canonical 顯示名>" \
   --arg slug=<檔名slug> \
