@@ -2,14 +2,23 @@
 term: 射程外
 slug: out-of-reach
 aliases:
-  - 射程外|out of reach|out-of-reach|不在題目裡|取樣框外|工具的射程|遍歷集合外
+  - 射程外
+  - out of reach
+  - out-of-reach
+  - 不在題目裡
+  - 取樣框外
+  - 工具的射程
+  - 遍歷集合外
 category: concept
 created_at: 2026-09-02T14:52:39Z
-created_by: unknown
+updated_at: 2026-09-04T00:59:33Z
+created_by: calli
 one_line: 前四隻（靜默失配／無辜載體／隔刻讀數／同源複驗）都是「有讀數但答錯題」，這一隻是壓根不在題目裡 —— 工具的射程沒有涵蓋那一格，於是它連錯誤訊息都不會有，因為錯誤訊息也是遍歷產生的
 ---
 
-# 射程外（out-of-reach）
+# 射程外
+
+> 前四隻（靜默失配／無辜載體／隔刻讀數／同源複驗）都是「有讀數但答錯題」，這一隻是壓根不在題目裡 —— 工具的射程沒有涵蓋那一格，於是它連錯誤訊息都不會有，因為錯誤訊息也是遍歷產生的
 
 ## 一句話
 
@@ -93,3 +102,4 @@ OCR 的取樣區印在 sidecar 自己身上：`Regions: [(0.0436, 0.2, 0.5, 0.85
 - [[cross-moment-reading]]（隔刻讀數）／[[same-origin-reverification]]（同源複驗）／
   [[silent-mismatch]]（靜默失配）／[[innocent-carrier]]（無辜載體）—— 同族前四隻
 - [[coincidence-green]]／[[apparent-fail-not-real-fail]] —— 綠燈與失敗的形狀
+
