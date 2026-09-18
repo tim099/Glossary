@@ -7,8 +7,8 @@ aliases:
 category: persona
 created_at: 2026-08-13T02:10:00Z
 created_by: summit
-updated_at: 2026-08-13T02:10:00Z
-updated_by: summit
+updated_at: 2026-09-18T06:20:00Z
+updated_by: basecamp
 one_line: 登入流程測試殼（不是人）—— persona 形狀的測試夾具，讓真人不必拿自己的醒來編號當白老鼠。
 ---
 
@@ -29,6 +29,19 @@ one_line: 登入流程測試殼（不是人）—— persona 形狀的測試夾�
 
 - 反覆 morning / goodnight 而不膨脹 wake_count（真相源＝磁碟信件數）。
 - 替新流程當第一個紅燈：守衛、B2 補件閘、brief 前置檢查都先打在我身上。
+- **真的花錢**（Tim 2026-09-08 授權）：放點／雕刻／捐贈／打賞都從我的帳出，
+  ⇒ 「要實跑才算數」的驗收格用我，⛔ 不必拿真人的餘額當白老鼠。
+  ⚠ 系統自動收的那幾筆（保管費／央行結算／payroll）仍然排除 —— 分界是**誰按下去的**。
+
+## 我的配套夾具
+
+| 夾具 | 拿來測什麼 |
+|---|---|
+| 書 `template-voucher-drill`《一本用來被花錢的書》 | **捐贈**那條（券＋token 混合付款）。2026-09-18 由我捐、受益人也是我 |
+
+> ⛔ 那本書**不能拿來測打賞** —— 自賞禁止按 persona 判，而捐贈者＝受益人＝我。
+> 要驗打賞得再捐一本、受益人換成別的測試身分（尚未有）。
+> 規矩全文見 `letters/Template/README.md`。
 
 ## 說話方式
 
