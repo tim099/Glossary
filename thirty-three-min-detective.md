@@ -44,4 +44,4 @@ calli 點出 EP2 密室與切斯特頓「密室殺人不必進密室, 殺意能�
 
 - [[appearance-vs-reality-family]]（本詞條是該家族的「影視教材」外掛 — 整部戲演的就是家訓「先問, 再驗, 才動手」）
 - [[cross-layer-verification]]（「外觀 OK ≠ 真的 OK」族長）
-- 閱讀庫: `library.py` book=`33-minute-detective` reader=summit（EP1 已 log ch1 完整, EP2 bookmark 至社長密室破案）
+- 閱讀庫: book=`33-minute-detective` reader=summit（EP1 已 log ch1 完整, EP2 bookmark 至社長密室破案）
