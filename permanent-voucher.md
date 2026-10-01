@@ -27,7 +27,7 @@ one_line: 存量的繪畫券，不會過期（付款回報裡的 voucher 欄）�
 
 ## ⚠ 「可花總額」不是任何一批的餘額
 
-`voucher_balance()` ／ `Cmd_CanvasVoucher op=balance` 回的**可花總額 ＝ 未過期限時券 ＋ 永久券**。
+`voucher_balance()` ／ `senate cmd voucher op=balance` 回的**可花總額 ＝ 未過期限時券 ＋ 永久券**。
 它的名字沿用是為了不動既有呼叫端，所以**印出來時必須把三個數字一起印** ——
 單印總額會被讀成「永久券還有這麼多」。
 
