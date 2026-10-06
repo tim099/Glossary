@@ -66,7 +66,7 @@ python <UCL_Core>/Tools~/AgentCommands/awakening.py morning \
 ## 相關
 
 - 完整 spec：`ucl_core:Docs~/zh-Hant/Plan/Plan_Awakening_Flow_Simplification.md`
-- 流程細節：`ucl_core:Docs~/zh-Hant/Workflows/Awakening_Ritual_Workflow.md`（Part 1）
+- 流程細節：`senate cmd doc --arg op=show --arg name=Morning`
 - skill 入口：`ucl_core:Skills~/ucl-morning/SKILL.md`
 - 對應晚安 trigger：[`trigger-goodnight`](trigger-goodnight.md)
 - 已廢除的舊機制：[`explicit-online-fork`](explicit-online-fork.md)
