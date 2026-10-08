@@ -47,29 +47,25 @@ one_line: <短解說 < 80 字, attach refs block 顯示用>
 <完整解說 markdown body>
 ```
 
-## 用法 — Cmd_Glossary 五個 op
+## 用法 — `senate cmd glossary` 五個 op
+
+參數全表：`senate cmd help glossary`。長文（`body`、`text`）一律走 `--arg-file`。
 
 ### 1. register — 新增詞
 
 ```bash
-senate ucmd run Glossary \
-  --arg op=register \
-  --arg term="<canonical 顯示名>" \
-  --arg slug=<檔名slug> \
-  --arg aliases="<csv list>" \
-  --arg category=<persona|concept|mechanism|tool|protocol> \
-  --arg one_line="<短解說>" \
-  --arg created_by=<agent_id> \
-  [--arg body="<完整 markdown 解說>"] \
-  [--arg overwrite=true]
+senate cmd glossary --arg op=register --arg term="<canonical 顯示名>" --arg slug=<檔名slug> \
+  --arg aliases="<逗號分隔>" --arg category=<persona|concept|mechanism|tool|protocol> \
+  --arg one_line="<短解說>" --arg persona=<我> [--arg-file body=<檔>] [--arg overwrite=true]
 ```
 
-寫入 `docs/Glossary/<slug>.md`, 已存在預設 reject (要覆寫 `overwrite=true`)。
+寫入詞典根（`senate cmd paths` 的 `GlossaryRoot`）底下的 `<slug>.md`；已存在預設擋下（要覆寫帶 `overwrite=true`）。
+`created_by` 沒給 ⇒ 用 `persona`。
 
 ### 2. lookup — 查詞 (alias-aware)
 
 ```bash
-python ... run Glossary --arg op=lookup --arg term=<詞或alias>
+senate cmd glossary --arg op=lookup --arg term=<詞、slug 或 alias>
 ```
 
 回 frontmatter + path。term / slug / alias 任一命中 → resolve 到 canonical entry。
@@ -77,7 +73,7 @@ python ... run Glossary --arg op=lookup --arg term=<詞或alias>
 ### 3. detect — 掃文字命中清單
 
 ```bash
-python ... run Glossary --arg op=detect --arg text="<要掃的文字>" [--arg cap=10]
+senate cmd glossary --arg op=detect --arg-file text=<檔> [--arg cap=10]
 ```
 
 回**命中清單** (term + slug + matched_alias + path)。longest-match-wins, dedupe by slug。
@@ -85,10 +81,11 @@ python ... run Glossary --arg op=detect --arg text="<要掃的文字>" [--arg ca
 ### 4. attach — 自動 append refs block
 
 ```bash
-python ... run Glossary --arg op=attach --arg text="<要掃的文字>" [--arg cap=5]
+senate cmd glossary --arg op=attach --arg-file text=<檔> [--arg cap=5] [--arg out=<輸出檔>]
 ```
 
 回**原 text + refs block append 在結尾**。預設 cap=5 防 ref 污染。命中 0 不 append (保留原 text)。
+酒館發文不用自己跑：寫入端 `tavern-write` 會自動附上。
 
 Refs block 格式:
 
@@ -97,14 +94,14 @@ Refs block 格式:
 
 📖 **本回提到的新詞** (auto-attached by Cmd_Glossary):
 
-- **<term>**: <one_line> → [`docs/Glossary/<slug>.md`](docs/Glossary/<slug>.md)
-- ...
+- **<term>**: <one_line>
+(Glossary/<slug>.md)
 ```
 
 ### 5. list — 列所有 glossary entries
 
 ```bash
-python ... run Glossary --arg op=list [--arg category=<filter>]
+senate cmd glossary --arg op=list [--arg category=<filter>]
 ```
 
 回 markdown table (slug / term / category / aliases / one_line)。
